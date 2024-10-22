@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halaman Tambah Mahasiswa</title>
+    <style>
+      body {
+        background-image: url(https://img.freepik.com/free-vector/watercolor-emerald-background_23-2150270303.jpg?t=st=1729612216~exp=1729615816~hmac=76275831944fd882b8ec7f6e81cb372e696ded04e8fd5be0a2e6eab3399a5af3&w=996);
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+      }
+      h1 {
+        text-align: center;
+      }
+      .form-container {
+        background-color: #30f4b0c5;
+        padding: 40px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        width: 350px;
+      }
+      label {
+        display: block;
+        margin: 10px 0 5px;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 200px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: black;
+        color: rgb(255, 0, 0);
+        border: none;
+        border-radius: 200px;
+        cursor: pointer;
+      }
+
+      .container {
+        display: flex;
+        width: max-content;
+        gap: 1rem;
+      }
+      button:hover {
+        background-color: rgb(149, 147, 147);
+      }
+      .jenis {
+        text-align: center;
+      }
+      #clock {
+        color: rgb(255, 0, 0);
+        font-size: 18px;
+        font-weight: bold;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        margin-bottom: 20px;
+      }
+      .tambah {
+        background-color: #30f4b0c5;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        width: 350px;
+      }
+    </style>
+    <script>
+      function updateClock() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString();
+        document.getElementById("clock").textContent = timeString;
+      }
+      setInterval(updateClock, 1000);
+      function addForm() {
+        const formArea = document.getElementById("form-area");
+        const newForm = document.createElement("div");
+        newForm.classList.add("form-container");
+        newForm.innerHTML = `
+            <h1>Tambah Mahasiswa</h1>
+            <form onsubmit="handleSubmit(event)">
+                <label for="nama">Nama</label>
+                <input type="text" onblur="convertToUppercase(this)" required><br /><br />
+                <label for="nim">NIM</label>
+                <input type="number" required><br /><br />
+                <label for="">JENIS KELAMIN</label>
+                <select name="select_gender" required>
+                    <option class="jenis">----- Pilih Jenis Kelamin -----</option>
+                    <option>Laki Laki</option>
+                    <option>Perempuan</option>
+                </select><br /><br />
+                <button>Submit</button>
+            </form>
+        `;
+        formArea.appendChild(newForm);
+      }
+      function convertToUppercase(input) {
+        input.value = input.value.toUpperCase();
+      }
+      function handleSubmit(event) {
+        event.preventDefault();
+        alert("Selamat data anda telah berhasil disimpan");
+        window.location.reload();
+      }
+    </script>
+  </head>
+  <body onload="updateClock()">
+    <div id="clock"></div>
+    <div id="form-area">
+      <div class="form-container">
+        <h1>Tambah Mahasiswa</h1>
+        <form onsubmit="handleSubmit(event)">
+          <label for="nama">NAMA</label>
+          <input type="text" onblur="convertToUppercase(this)" required />
+          <br /><br />
+          <label for="nim">NIM</label>
+          <input type="number" /> <br /><br />
+          <label for="">JENIS KELAMIN</label>
+          <select name="select_gender" id="">
+            <option class="jenis">----- Pilih Jenis Kelamin -----</option>
+            <option>PRIA</option>
+            <option>WANITA</option>
+          </select>
+          <br />
+          <br />
+          <button>Submit</button>
+        </form>
+      </div>
+      <br>
+    </div>
+    <button class="tambah" onclick="addForm()">Tambah Form Baru</button>
+  </body>
+</html>
